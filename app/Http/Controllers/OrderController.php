@@ -38,7 +38,7 @@ class OrderController extends Controller
         $cartItems = Cart::where('user_id', auth()->id())->with('product')->get();
 
         $totalPrice = 0;
-        
+
         $discount_id = null;
         foreach ($cartItems as $cartItem) {
             $totalPrice += $cartItem->quantity * $cartItem->product->price;
@@ -64,7 +64,7 @@ class OrderController extends Controller
             'city' => $validatedData['city'],
             'latitude' => $validatedData['latitude'],
             'longitude' => $validatedData['longitude'],
-            'total_price' => $totalPrice, 
+            'total_price' => $totalPrice,
         ]);
 
 
@@ -80,7 +80,7 @@ class OrderController extends Controller
         // remove the cart items after the order is placed
         Cart::where('user_id', auth()->id())->delete();
 
-        return redirect()->route('home')->with('success', 'Color updated successfully.');
+        return redirect()->route('home')->with('success_alert', 'Your Order Number Is : '.$order->id. ' Use it to track your order');
 
     }
 

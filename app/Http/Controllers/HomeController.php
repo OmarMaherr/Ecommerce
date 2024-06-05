@@ -10,27 +10,23 @@ use Illuminate\Http\Request;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
-
+use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
 class HomeController extends Controller
 {
 
     public function index()
     {
 
-        $firebase = (new Factory)
-            ->withServiceAccount(__DIR__.'../../../../config/firebase_credentials.json');
-
-        $messaging = $firebase->createMessaging();
-
-        $deviceToken = 'eYhJbCwnkpM9_byfu1bU9x:APA91bF50PdhcaVYFSXsILq4x1Ap5bKjLn39zKH8rXt7dqa3EOuLm-QnBRrvfpRqNZI-HzdmaYGE1dgVOWm2ACchKAv1NDNHR0f5wk20ydMkTKg7Rp3e_BuNHrRGk28XiyRjQ-IFQbYH';
-
-        $message = CloudMessage::withTarget('token', $deviceToken)
-            ->withNotification(Notification::create('omar', 'BodyBodyBodyBodyBodyBodyBody'))
-            ->withData(['key' => 'value'])
-        ;
-
+//        $deviceToken = 'eYhJbCwnkpM9_byfu1bU9x:APA91bF50PdhcaVYFSXsILq4x1Ap5bKjLn39zKH8rXt7dqa3EOuLm-QnBRrvfpRqNZI-HzdmaYGE1dgVOWm2ACchKAv1NDNHR0f5wk20ydMkTKg7Rp3e_BuNHrRGk28XiyRjQ-IFQbYH';
+//        $firebase = (new Factory)
+//            ->withServiceAccount(__DIR__.'../../../../config/firebase_credentials.json');
+//
+//        $messaging = $firebase->createMessaging();
+//        $message = CloudMessage::withTarget('token', $deviceToken)
+//        ->withNotification(FirebaseNotification::create('Title', 'Body'));
+//
 //        $messaging->send($message);
-
+//        return response()->json(['message' => 'Push notification sent successfully']);
 
 
         $images = Slider_image::all();

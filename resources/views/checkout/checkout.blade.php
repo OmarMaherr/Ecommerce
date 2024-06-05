@@ -26,6 +26,29 @@
   .nice-select .option.selected.focus {
     text-align: center;
   }
+
+   .form-v5-content {
+       height: auto !important;
+   }
+
+  .page-content {
+      height: 910px;
+  }
+
+  .form-detail .form-row-last input {
+      width: 238px !important;
+  }
+
+  .invalid_label_asterisk {
+      color: red;
+      font-weight: bold;
+  }
+
+  .error {
+      color: red;
+      font-size: 16px !important;
+      margin: 5px;
+  }
 </style>
 <section class="checkout_area section_gap">
   <div class="container">
@@ -43,7 +66,7 @@
 
     </div>
 
-    <form class="row contact_form" action="{{ route('order.store') }}" method="POST">
+    <form class="row checkout_form" name="checkout_form" action="{{ route('order.store') }}" method="POST">
       @csrf
       <div class="billing_details">
         <div class="row">
@@ -53,20 +76,25 @@
             <input type="hidden" id="discount_id" name="discount_id" class="discount_id" />
 
             <div class="col-md-12 form-group p_star">
-              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" required />
+                <label for="first_name">First name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" required />
             </div>
             <div class="col-md-12 form-group p_star">
+                <label for="last_name">Last name</label>
               <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" required />
             </div>
 
             <div class="col-md-12 form-group p_star">
+                <label for="phone_number">Phone number</label>
               <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone number" required />
             </div>
             <div class="col-md-12 form-group p_star">
+                <label for="email">Email Address</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" required />
             </div>
             <div class="col-md-12 form-group p_star">
-              <select class="country_select" name="country" required>
+                <label for="city">Country</label>
+                <select class="country_select" name="country" required>
                 <option value="1">Jordan</option>
                 <option value="2">Country</option>
                 <option value="4">Country</option>
@@ -75,6 +103,7 @@
 
 
             <div class="col-md-12 form-group p_star">
+                <label for="city">Town/City</label>
               <input type="text" class="form-control" id="city" name="city" placeholder="Town/City" required />
             </div>
             <div class="col-md-12 form-group">
@@ -208,97 +237,7 @@
     infoWindow.open(marker.getMap(), marker);
   }
 </script>
-<!-- <script>
-  var marker;
-  var infoWindow; // Variable to hold the info window object
 
-  function myMap() {
-    var defaultLat = parseFloat(document.getElementById('latitude').value);
-    var defaultLng = parseFloat(document.getElementById('longitude').value);
-
-    var mapProp = {
-      center: new google.maps.LatLng(defaultLat, defaultLng),
-      zoom: 10,
-    };
-
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-    // Change marker color by specifying the icon property
-    marker = new google.maps.Marker({
-      position: mapProp.center,
-      map: map,
-      title: 'Marker Title',
-      draggable: true,
-      icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' // Change the URL to the desired marker color
-    });
-
-    infoWindow = new google.maps.InfoWindow(); // Create an info window
-
-    google.maps.event.addListener(marker, 'dragend', function(event) {
-      updateMarker(event.latLng);
-    });
-
-    google.maps.event.addListener(map, 'click', function(event) {
-      updateMarker(event.latLng);
-    });
-  }
-
-  function updateMarker(location) {
-    marker.setPosition(location);
-
-    // Perform reverse geocoding to get address details
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'location': location }, function(results, status) {
-      if (status === google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-          var addressComponents = results[0].address_components;
-          var content = getAddressFormat(addressComponents);
-          // Update info window content
-          infoWindow.setContent(content);
-          // Open info window above the marker
-          infoWindow.open(marker.getMap(), marker);
-        }
-      }
-    });
-
-    document.getElementById('latitude').value = location.lat();
-    document.getElementById('longitude').value = location.lng();
-  }
-
-  // Function to format address components
-  function getAddressFormat(components) {
-    var address = '';
-    var streetNumber = getComponent(components, 'street_number');
-    var route = getComponent(components, 'route');
-    var neighborhood = getComponent(components, 'sublocality_level_1');
-    var city = getComponent(components, 'locality');
-    var state = getComponent(components, 'administrative_area_level_1');
-    var country = getComponent(components, 'country');
-    var postalCode = getComponent(components, 'postal_code');
-    
-    address += streetNumber ? streetNumber + ' - ' : '';
-    address += route ? route + ' - ' : '';
-    address += neighborhood ? neighborhood + ' - ' : '';
-    address += city ? city + ' - ' : '';
-    address += state ? state + ' - ' : '';
-    address += country ? country + ' - ' : '';
-    address += postalCode ? postalCode + ' - ' : '';
-
-    return address;
-  }
-
-  // Helper function to get address component by type
-  function getComponent(components, type) {
-    for (var i = 0; i < components.length; i++) {
-      for (var j = 0; j < components[i].types.length; j++) {
-        if (components[i].types[j] === type) {
-          return components[i].long_name;
-        }
-      }
-    }
-    return '';
-  }
-</script> -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbF9O9Ks9_-QNWHi2SFxLqLUBOwrMyzXk&callback=myMap"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
