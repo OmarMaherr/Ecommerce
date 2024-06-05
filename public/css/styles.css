@@ -1,0 +1,23 @@
+.add_to_cart_icon {
+    display: inline-block;
+    height: 36px;
+    line-height: 40px;
+    width: 36px;
+    text-align: center;
+    background: #fff;
+    border-radius: 30px;
+    color: #2a2a2a;
+    margin-right: 25px;
+
+}
+
+.add_to_cart_icon:hover {
+    color: #fff;
+    background: #71cd14;
+}
+
+.add_to_cart_icon_btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
