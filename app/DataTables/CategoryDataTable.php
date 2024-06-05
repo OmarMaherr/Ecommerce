@@ -32,17 +32,23 @@ class CategoryDataTable extends DataTable
             ->addColumn(
                 'action',
                 function ($row) {
+                    $sliderButton = '';
+                    if ($row->parent_id == 0) {
+                        $sliderButton = '<a href="' . route("category_slider.show", $row->id) . '" class="edit btn btn-primary btn-sm mr-2">Slider</a>';
+                    }
+
 
                     $actionBtn = '
                     <form id="delete-form-' . $row->id . '" action="' . route("category.destroy", $row->id) . '" method="POST">
                     <div class="d-flex justify-content-between align-items-center">
                     <a href="' . route("category.edit", $row->id) . '" class="edit btn btn-success btn-sm mr-2">Edit</a>
+                    ' . $sliderButton . '
                     ' . csrf_field() . '
                     ' . method_field("DELETE") . '
                     <button type="button"
-                    data-delete-url="'.route('category.destroy',  $row->id ) .'"
+                    data-delete-url="' . route('category.destroy', $row->id) . '"
                     onclick="confirmDelete(\'category\', ' . $row->id . ', window.LaravelDataTables[\'category-table\'] )"
-                    class="delete_'. $row->id .' btn btn-danger btn-sm">Delete</button>
+                    class="delete_' . $row->id . ' btn btn-danger btn-sm">Delete</button>
                     </div>
                     </form>
                     ';
@@ -52,14 +58,17 @@ class CategoryDataTable extends DataTable
             ->rawColumns(['action'])
             ->addIndexColumn();
     }
+
     /**
      * Get the query source of dataTable.
      */
     public function query(Category $model): QueryBuilder
     {
-    return $model->with('parent')->newQuery();
-    // return $model->newQuery();
+        return $model->with('parent')
+            ->orderByRaw('parent_id IS NULL DESC, parent_id ASC, id ASC')
+            ->newQuery();
     }
+
     /**
      * Optional method if you want to use the html builder.
      */
@@ -97,10 +106,10 @@ class CategoryDataTable extends DataTable
             ->defaultContent('Main Category') // Optional: Set default content if parent doesn't exist
             ->orderable(false), // Optional: Disable sorting on this column
             Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(60)
-            ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

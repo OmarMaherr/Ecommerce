@@ -12,6 +12,7 @@ use App\Http\Controllers\FeaturedProductController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategorySlidersController;
 use Illuminate\Support\Facades\Route;
     Route::group(['middleware' => 'guest:admin'], function () {
 
@@ -32,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 
 
         Route::resource('category', CategoryController::class);
+        Route::resource('category_slider', CategorySlidersController::class);
+
         Route::get('/sort_category', [CategoryController::class, 'sort_category'])->name('sort_category');
         Route::post('/sort_category', [CategoryController::class, 'confirm_sort_category'])->name('confirm.sort_category');
 

@@ -8,25 +8,26 @@ use App\Models\Slider_image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Factory;
+use Kreait\Firebase\Messaging\AndroidConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
+use Kreait\Laravel\Firebase\Facades\Firebase;
+
 class HomeController extends Controller
 {
 
     public function index()
     {
 
-//        $deviceToken = 'eYhJbCwnkpM9_byfu1bU9x:APA91bF50PdhcaVYFSXsILq4x1Ap5bKjLn39zKH8rXt7dqa3EOuLm-QnBRrvfpRqNZI-HzdmaYGE1dgVOWm2ACchKAv1NDNHR0f5wk20ydMkTKg7Rp3e_BuNHrRGk28XiyRjQ-IFQbYH';
-//        $firebase = (new Factory)
-//            ->withServiceAccount(__DIR__.'../../../../config/firebase_credentials.json');
-//
-//        $messaging = $firebase->createMessaging();
-//        $message = CloudMessage::withTarget('token', $deviceToken)
-//        ->withNotification(FirebaseNotification::create('Title', 'Body'));
-//
+        $deviceToken = 'e2yZ2ClAKLERC8J6_E4O8A:APA91bGFA0s_IilH2nx82ob8iv8QCJCxnoJWK1RgMObdM7HbnGwWsl9j1in-hLSEQDrz_J_8nDRfztZ4LrJf38h_61_pHAHDgE1kMnmxEbRR_H3CMQ1DwdTPUXMGG5uxNYDZs8Y8NAs6';
+
+        $messaging = Firebase::messaging();
+        $message = CloudMessage::withTarget('token', $deviceToken)
+        ->withNotification(FirebaseNotification::create('Title', 'Body'));
 //        $messaging->send($message);
-//        return response()->json(['message' => 'Push notification sent successfully']);
+
+
 
 
         $images = Slider_image::all();

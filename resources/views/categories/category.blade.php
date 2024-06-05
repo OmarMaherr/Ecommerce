@@ -4,6 +4,9 @@
 @section('content')
 
 
+    <!--================Home Banner Area =================-->
+    @include('homeSections.categories_slider')
+    <!--================End Home Banner Area =================-->
 
 
 

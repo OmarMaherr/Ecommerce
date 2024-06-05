@@ -286,13 +286,13 @@
 <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js"></script>
 <script>
     var firebaseConfig = {
-        apiKey: "AIzaSyBBqaAH24GZZFtT-2rk1zZ7ssSpSH2JOtY",
-        authDomain: "ecommerce-ec2a2.firebaseapp.com",
-        projectId: "ecommerce-ec2a2",
-        storageBucket: "ecommerce-ec2a2.appspot.com",
-        messagingSenderId: "352190467268",
-        appId: "1:352190467268:web:fae275e1e0ca205b788d91",
-        measurementId: "G-L6C62BKHCZ"
+        apiKey: "AIzaSyBs6FOaBUhnyytS7HiVS1PsAWJXL5GK-i4",
+        authDomain: "ec2024-a1922.firebaseapp.com",
+        projectId: "ec2024-a1922",
+        storageBucket: "ec2024-a1922.appspot.com",
+        messagingSenderId: "280121035997",
+        appId: "1:280121035997:web:33625ecccbb41aae1a1f34"
+
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -302,7 +302,7 @@
         .requestPermission()
         .then(function() {
             return messaging.getToken({
-                vapidKey: 'BNHEQdY6C86n__4QZFjUSIgVZqaFZpN2rXDViNDfUD7YLX7nKjD3cnEpiT5QllfH1_SlrD_p19wdHg9g-brQfow'
+                vapidKey: 'BCjdjGHBbRL4e7zKQo2TdPZpGl5oIpP9ab4ME7_zp7JyLJrhOnMXeUVPJNG07jhXE77oUv786_SeM_lmJR5IyJ4'
             })
         })
         .then(function(token) {
