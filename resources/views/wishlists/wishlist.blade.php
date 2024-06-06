@@ -37,7 +37,7 @@
                       <img style="width: 100%; height: 178px;" src="{{ asset($wishlist->product->images->first()->image_name) }}" alt="" />
                       @else
                             <img style="width: 100%; height: 74px;"
-                                 src="{{ asset('img/logo.png') }}"
+                                 src="{{ asset('img/default_image.png') }}"
                                  alt=""/>
                       @endif
                     </a>

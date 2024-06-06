@@ -47,14 +47,14 @@
             </div>
           </div>
 
-
+            @if(isset($order->discount->discount_percentage))
           <div class="form-group row">
             <label for="total_price1" class="col-sm-3 text-end control-label col-form-label">Discount</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="Discount" placeholder="Discount" value="{{ $order->discount->discount_percentage }}%" disabled>
             </div>
           </div>
-
+            @endif
           <div class="form-group row">
             <label for="total_price1" class="col-sm-3 text-end control-label col-form-label">Total Price</label>
             <div class="col-sm-9">

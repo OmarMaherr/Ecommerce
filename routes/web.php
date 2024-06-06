@@ -50,6 +50,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'store']);
 
     Route::post('/login', [AuthController::class, 'authenticate']);
+    Route::post('/check_login', [AuthController::class, 'check_login'])->name("check_login");
+    Route::post('/check_email', [AuthController::class, 'check_email'])->name("check_email");
 });
 
 
@@ -65,7 +67,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/discount_apply', [DiscountController::class, 'discount_apply'])->name("discount_apply");
 
     Route::post('/save-push-notification-token', [SendNotificationController::class, 'savePushNotificationToken'])->name('save-push-notification-token');
-    Route::post('/send-push-notification', [SendNotificationController::class, 'sendPushNotification'])->name('send.push-notification');
 });
 
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategorySlidersController;
+use App\Http\Controllers\SendNotificationController;
 use Illuminate\Support\Facades\Route;
     Route::group(['middleware' => 'guest:admin'], function () {
 
@@ -52,6 +53,8 @@ use Illuminate\Support\Facades\Route;
 
 
         Route::resource('map', MapController::class);
+
+        Route::resource('send_notification', SendNotificationController::class);
 
 
         Route::resource('discount', DiscountController::class);

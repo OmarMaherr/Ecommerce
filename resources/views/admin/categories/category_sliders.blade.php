@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4 class="mb-0">Drop Multiple Images</h4>
+                        <h4 class="mb-0">{{$category->name}} Slider Images</h4>
                     </div>
                     <div class="col-md-12 form-group">
                         @include('alerts.error-alert')

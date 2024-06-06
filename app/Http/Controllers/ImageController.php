@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider_image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -14,7 +15,7 @@ class ImageController extends Controller
         if ($request->hasFile('file')) {
 
 
-            // shared function 
+            // shared function
             $uploadPath = "uploads/gallery/";
 
             $file = $request->file('file');
@@ -29,6 +30,10 @@ class ImageController extends Controller
                 'name' => $finalImageName
             ]);
 
+
+            // Clear the existing cache
+            Cache::forget('Slider_image');
+
             return response()->json(['success' => 'Image Uploaded Successfully']);
         } else {
             return response()->json(['error' => 'File upload failed.']);
@@ -42,7 +47,6 @@ class ImageController extends Controller
         $image = Slider_image::find($id);
 
         if (!$image) {
-            // return response()->json(['message' => 'Image not found.'], 404);
             return redirect()->route('slider')->withErrors([
                 'error' => "Image not found."
             ]);
@@ -50,7 +54,8 @@ class ImageController extends Controller
 
         unlink($image->name);
         $image->delete();
+        Cache::forget('Slider_image');
+
         return redirect()->route('slider')->with('success', 'Image deleted successfully.');
-        // return response()->json(['message' => 'Image deleted successfully.']);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\CategorySlider;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Slider_image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -21,13 +22,18 @@ class SingleCategoryController extends Controller
         array_push($categoryIds, $id);
 
 
-        $products = Product::with(['category', 'specification'])
+        $products = Product::with(['category', 'images'])
             ->whereIn('category_id', $categoryIds)
             ->get();
+
+
 
         $category = Category::where('id', $id)->first();
 
         return view('categories.category', compact('products' , 'category' , 'images'));
     }
+
+
+
 
 }

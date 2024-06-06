@@ -30,7 +30,7 @@ class AuthController extends Controller
             [
                 'name' => 'required|min:3|max:40',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required|confirmed|min:8'
+                'password' => 'required|confirmed'
             ]
         );
 
@@ -53,9 +53,10 @@ class AuthController extends Controller
         $validated = request()->validate(
             [
                 'email' => 'required|email',
-                'password' => 'required|min:8'
+                'password' => 'required'
             ]
         );
+
         $sessionId = session()->getId();
 
         if (auth()->attempt($validated)) {
@@ -160,4 +161,34 @@ class AuthController extends Controller
 
         return redirect()->back()->with('success', 'User ' . $user->name . ' Baned Until ' . $validatedData['ban_date']);
     }
+
+
+    public function check_login(Request $request)
+    {
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            if (Hash::check($password, $user->password)) {
+                return response()->json(['message' => 'Authentication successful'], 200);
+            } else {
+                return response()->json(['message' => 'Password Incorrect'], 200);
+            }
+        } else {
+            return response()->json(['message' => 'No matching user found with the provided email and password'], 200);
+        }
+    }
+
+    public function  check_email(Request $request)
+    {
+        $email = $request->input('email');
+        $exists = User::where('email', $email)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+
+
+
 }

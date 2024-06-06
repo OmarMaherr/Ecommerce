@@ -1030,3 +1030,8 @@ h6{font-size:14px}
 @media screen and (max-width: 990px){
     .product-grid{ margin: 0 0 30px; }
 }
+.error {
+    color: red;
+    font-size: 16px !important;
+    margin: 5px;
+}

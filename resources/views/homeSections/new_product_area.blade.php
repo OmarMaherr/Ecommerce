@@ -21,7 +21,7 @@
             <img class="img-fluid" src="{{ asset($products->first()->images->first()->image_name) }}" alt="" />
             @else
             <!-- If no images are found, display a placeholder image -->
-            <img class="img-fluid" src="{{asset('img/logo.png') }}" alt="" />
+            <img class="img-fluid" src="{{asset('img/default_image.png') }}" alt="" />
             @endif
 
           </div>
@@ -56,7 +56,7 @@
                 <img class="img-fluid w-100" src="{{ asset($product->images->first()->image_name) }}" alt="" />
                 @else
                 <!-- If no images are found, display a placeholder image -->
-                <img class="img-fluid w-100" src="{{asset('img/logo.png') }}" alt="" />
+                <img class="img-fluid w-100" src="{{asset('img/default_image.png') }}" alt="" />
                 @endif
                 <div class="p_icon">
                   <a href="{{ route('single_product.show' , [encrypt($product->id)]) }}">

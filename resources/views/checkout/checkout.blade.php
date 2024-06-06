@@ -44,11 +44,7 @@
       font-weight: bold;
   }
 
-  .error {
-      color: red;
-      font-size: 16px !important;
-      margin: 5px;
-  }
+
 </style>
 <section class="checkout_area section_gap">
   <div class="container">

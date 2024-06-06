@@ -57,8 +57,8 @@
                                     <img class="pic-1" src="{{ asset($product->images->first()->image_name) }}">
                                     <img class="pic-2" src="{{ asset($product->images->first()->image_name) }}">
                                 @else
-                                    <img class="pic-1" src="{{asset('img/logo.png') }}">
-                                    <img class="pic-2" src="{{asset('img/logo.png') }}">
+                                    <img class="pic-1" src="{{asset('img/default_image.png') }}">
+                                    <img class="pic-2" src="{{asset('img/default_image.png') }}">
 
                                 @endif
 

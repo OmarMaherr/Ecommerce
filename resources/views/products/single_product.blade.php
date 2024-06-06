@@ -29,7 +29,7 @@
               @endforeach
               @else
               <div class="carousel-item active">
-                <img class="d-block w-100" src="{{asset('img/logo.png') }}" alt="First slide" />
+                <img class="d-block w-100" src="{{asset('img/default_image.png') }}" alt="First slide" />
               </div>
               @endif
 
@@ -64,7 +64,7 @@
             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
               <i class="lnr lnr-chevron-up"></i>
             </button>
-            
+
             <button class="reduced items-count" type="button">
               <i class="lnr lnr-chevron-down"></i>
             </button>

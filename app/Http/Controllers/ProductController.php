@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductSpecification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -97,6 +98,11 @@ class ProductController extends Controller
                 }
             }
         }
+
+        Cache::forget('NewProduct');
+        Cache::forget('inspired_products');
+        Cache::forget('feature_product');
+
         // Redirect or return a response
          return redirect()->route('product.index')->with('success', 'Product created successfully.');
 //        return 1;
@@ -123,6 +129,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
+        Cache::forget('NewProduct');
+        Cache::forget('inspired_products');
+        Cache::forget('feature_product');
         return 1;
     }
 
@@ -136,6 +145,7 @@ class ProductController extends Controller
             // Update the is_featured column to null
             $Product->update(['is_featured' => null]);
 
+            Cache::forget('feature_product');
             return redirect()->back()->with('success', 'Product removed from featured successfully.');
         }
 

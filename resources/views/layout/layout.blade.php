@@ -83,7 +83,7 @@
             <nav class="navbar navbar-expand-lg navbar-light w-100">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="{{ route('home') }}">
-                    <img src="img/logo.png" alt=""/>
+                    <img src="{{asset('img/logo.png')}}" alt=""/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
